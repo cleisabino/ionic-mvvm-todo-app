@@ -2,7 +2,7 @@
 
 ## Descrição
 
-    Aplicativo de Lista de Tarefas desenvolvido com **Ionic + Angular**, utilizando **MVVM + Clean Architecture** e integração com [MockAPI.io](https://mockapi.io/). O app permite criar, editar, excluir e agendar lembretes com **notificações locais personalizadas** (Android e iOS).
+Aplicativo de Lista de Tarefas desenvolvido com **Ionic + Angular**, utilizando **MVVM + Clean Architecture** e integração com [MockAPI.io](https://mockapi.io/). O app permite criar, editar, excluir e agendar lembretes com **notificações locais** (Android e iOS).
 
 ---
 
@@ -89,8 +89,11 @@ ionic cap run ios --device
 ## 🧑‍💻 Autor
 
 Desenvolvido por Clei Sabino
+
 📧 cleisabino@hotmail.com
-🔗 www.linkedin.com/in/clei-sabino-528a21a1
+
+🔗 [www.linkedin.com/in/clei-sabino-528a21a1](www.linkedin.com/in/clei-sabino-528a21a1)
+
 🐙 [github.com/cleisabino](https://github.com/cleisabino)
 
 ---
