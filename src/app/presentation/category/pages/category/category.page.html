@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tarefas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Categorias</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirFormulario()">Adicionar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="vm">
+    <ion-list *ngIf="vm.items().length > 0; else vazio">
+      <ion-item *ngFor="let category of vm.items()">
+        <ion-avatar slot="start">
+          <div [ngStyle]="{ 
+                'background-color': category.color || '#ccc', 
+                'border-radius': '50%', 
+                'width': '32px', 
+                'height': '32px' 
+              }">
+          </div>
+        </ion-avatar>
+        <ion-label>{{ category.name }}</ion-label>
+        <ion-buttons slot="end">
+          <ion-button fill="clear" color="primary" (click)="editar(category)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-template #vazio>
+    <ion-text color="medium">
+      <p class="ion-text-center">Nenhuma categoria encontrada.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

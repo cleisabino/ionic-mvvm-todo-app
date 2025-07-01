@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ category ? 'Editar' : 'Nova' }} Categoria</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fechar()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cor</ion-label>
+      <ion-input type="color" formControlName="color" style="width: 40px; height: 40px; border: none; background: transparent;"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid">
+      {{ category ? 'Atualizar' : 'Salvar' }}
+    </ion-button>
+  </form>
+</ion-content>

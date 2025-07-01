@@ -22,11 +22,11 @@ export class NotificationService {
 
         await LocalNotifications.schedule({
         notifications: [{
-            id: +task.id.replace(/\D/g, '').slice(0, 5), // ID numérico seguro
+            id: +task.id.replace(/\D/g, '').slice(0, 5),
             title: 'Lembrete',
             body: `Não se esqueça: ${task.title}`,
             schedule: { at: new Date(task.reminderDate) },
-            sound: 'beep.caf', // opcional
+            sound: 'beep.caf',
         }]
         });
     }

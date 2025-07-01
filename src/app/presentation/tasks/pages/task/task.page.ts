@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonText, IonIcon, IonList, IonItem, IonCheckbox, IonLabel, IonRefresher, IonRefresherContent, RefresherEventDetail, ModalController, AlertController } from '@ionic/angular/standalone';
 import { TaskViewModel } from '../../view-models/task.viewmodel';
-import { Task } from '../../../domain/entities/task.entity'
-import { TaskFormComponent } from 'src/app/presentation/components/task-form/task-form.component';
+import { Task } from '../../../../domain/entities/task.entity'
+import { TaskFormComponent } from 'src/app/presentation/tasks/components/task-form/task-form.component';
 import { addIcons } from 'ionicons';
-import { createOutline, trashOutline, calendarOutline } from 'ionicons/icons';
+import { createOutline, trashOutline, calendarOutline, pricetagOutline, pricetag, calendar } from 'ionicons/icons';
+import { BasePage } from 'src/app/shared/bases/base-page';
 
 @Component({
   selector: 'app-task',
@@ -33,19 +34,18 @@ import { createOutline, trashOutline, calendarOutline } from 'ionicons/icons';
     IonRefresherContent,
   ]
 })
-export class TaskPage implements OnInit {
+export class TaskPage extends BasePage<TaskViewModel> implements OnInit {
 
-  public vm = inject(TaskViewModel);
   private modalCtrl = inject(ModalController);
   private alertCtrl = inject(AlertController);
   
   constructor() { 
-    addIcons({calendarOutline,createOutline,trashOutline});
+    super(inject(TaskViewModel))
+    addIcons({pricetag,calendar,createOutline,trashOutline});
   }
-  
 
   ngOnInit() {
-    this.vm.load();
+    this.init();
   }
 
   async abrirFormulario() {
@@ -96,10 +96,8 @@ export class TaskPage implements OnInit {
     await alert.present();
   }
 
-  async doRefresh(event: CustomEvent<RefresherEventDetail>) {
-    console.log('Recarregando...');
-    await this.vm.load();
-    event.detail.complete();
+  abrirCategorias() {
+    this.router.navigateByUrl('/category');
   }
 
 }

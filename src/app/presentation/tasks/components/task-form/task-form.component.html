@@ -20,6 +20,17 @@
     </ion-item>
 
     <ion-item>
+      <ion-label position="stacked">Categoria</ion-label>
+      <ion-select formControlName="categoryId" interface="popover" placeholder="Selecione uma categoria" (ionChange)="onCategoriaChange($event.detail.value)">
+        <ion-select-option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.name }}
+          <ion-icon name="ellipse-outline" [style.color]="cat.color" style="margin-right: 8px;"></ion-icon>
+        </ion-select-option>
+      </ion-select>
+      <ion-icon *ngIf="categoriaSelecionada" name="ellipse" slot="start" [style.color]="categoriaSelecionada.color" style="margin-right: 8px;"></ion-icon>
+    </ion-item>
+
+    <ion-item>
       <ion-label position="stacked">Data e hora do lembrete</ion-label>
       <ion-datetime
         formControlName="reminderDate"
@@ -27,7 +38,10 @@
       </ion-datetime>
     </ion-item>
 
-    <ion-button type="submit" expand="block" [disabled]="form.invalid">
+    <ion-text color="danger" *ngIf="form.get('reminderDate')?.errors?.['pastDate'] && form.get('reminderDate')?.touched">
+  A data deve ser futura.
+</ion-text>
+    <ion-button *ngIf="!task?.completed" type="submit" expand="block" [disabled]="form.invalid">
       {{ task ? 'Atualizar' : 'Criar' }}
     </ion-button>
   </form>
